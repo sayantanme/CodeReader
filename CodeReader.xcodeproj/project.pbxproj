@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		392D25B21EBB01B900D0BB46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D25B11EBB01B900D0BB46 /* AppDelegate.swift */; };
-		392D25B41EBB01B900D0BB46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D25B31EBB01B900D0BB46 /* ViewController.swift */; };
+		392D25B41EBB01B900D0BB46 /* BarCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D25B31EBB01B900D0BB46 /* BarCodeScanner.swift */; };
 		392D25B71EBB01B900D0BB46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392D25B51EBB01B900D0BB46 /* Main.storyboard */; };
 		392D25B91EBB01B900D0BB46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392D25B81EBB01B900D0BB46 /* Assets.xcassets */; };
 		392D25BC1EBB01B900D0BB46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392D25BA1EBB01B900D0BB46 /* LaunchScreen.storyboard */; };
 		392D25C71EBB01B900D0BB46 /* CodeReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D25C61EBB01B900D0BB46 /* CodeReaderTests.swift */; };
 		392D25D21EBB01B900D0BB46 /* CodeReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D25D11EBB01B900D0BB46 /* CodeReaderUITests.swift */; };
+		392D25E41EBB416D00D0BB46 /* ItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D25E31EBB416D00D0BB46 /* ItemsVC.swift */; };
+		39A225AA1EBC83B600EAB1BC /* CartModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39A225A81EBC83B600EAB1BC /* CartModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,7 @@
 /* Begin PBXFileReference section */
 		392D25AE1EBB01B900D0BB46 /* CodeReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		392D25B11EBB01B900D0BB46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		392D25B31EBB01B900D0BB46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		392D25B31EBB01B900D0BB46 /* BarCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeScanner.swift; sourceTree = "<group>"; };
 		392D25B61EBB01B900D0BB46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		392D25B81EBB01B900D0BB46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		392D25BB1EBB01B900D0BB46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +49,8 @@
 		392D25CD1EBB01B900D0BB46 /* CodeReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		392D25D11EBB01B900D0BB46 /* CodeReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeReaderUITests.swift; sourceTree = "<group>"; };
 		392D25D31EBB01B900D0BB46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		392D25E31EBB416D00D0BB46 /* ItemsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsVC.swift; sourceTree = "<group>"; };
+		39A225A91EBC83B600EAB1BC /* CartModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CartModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +102,13 @@
 			isa = PBXGroup;
 			children = (
 				392D25B11EBB01B900D0BB46 /* AppDelegate.swift */,
-				392D25B31EBB01B900D0BB46 /* ViewController.swift */,
+				392D25B31EBB01B900D0BB46 /* BarCodeScanner.swift */,
 				392D25B51EBB01B900D0BB46 /* Main.storyboard */,
 				392D25B81EBB01B900D0BB46 /* Assets.xcassets */,
 				392D25BA1EBB01B900D0BB46 /* LaunchScreen.storyboard */,
 				392D25BD1EBB01B900D0BB46 /* Info.plist */,
+				392D25E31EBB416D00D0BB46 /* ItemsVC.swift */,
+				39A225A81EBC83B600EAB1BC /* CartModel.xcdatamodeld */,
 			);
 			path = CodeReader;
 			sourceTree = "<group>";
@@ -262,7 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				392D25B41EBB01B900D0BB46 /* ViewController.swift in Sources */,
+				392D25B41EBB01B900D0BB46 /* BarCodeScanner.swift in Sources */,
+				39A225AA1EBC83B600EAB1BC /* CartModel.xcdatamodeld in Sources */,
+				392D25E41EBB416D00D0BB46 /* ItemsVC.swift in Sources */,
 				392D25B21EBB01B900D0BB46 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +524,7 @@
 				392D25D81EBB01B900D0BB46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		392D25D91EBB01B900D0BB46 /* Build configuration list for PBXNativeTarget "CodeReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +533,7 @@
 				392D25DB1EBB01B900D0BB46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		392D25DC1EBB01B900D0BB46 /* Build configuration list for PBXNativeTarget "CodeReaderUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,8 +542,23 @@
 				392D25DE1EBB01B900D0BB46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		39A225A81EBC83B600EAB1BC /* CartModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				39A225A91EBC83B600EAB1BC /* CartModel.xcdatamodel */,
+			);
+			currentVersion = 39A225A91EBC83B600EAB1BC /* CartModel.xcdatamodel */;
+			name = CartModel.xcdatamodeld;
+			path = ../CartModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 392D25A61EBB01B900D0BB46 /* Project object */;
 }
