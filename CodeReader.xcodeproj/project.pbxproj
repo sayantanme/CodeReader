@@ -16,6 +16,7 @@
 		392D25D21EBB01B900D0BB46 /* CodeReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D25D11EBB01B900D0BB46 /* CodeReaderUITests.swift */; };
 		392D25E41EBB416D00D0BB46 /* ItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D25E31EBB416D00D0BB46 /* ItemsVC.swift */; };
 		39A225AA1EBC83B600EAB1BC /* CartModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39A225A81EBC83B600EAB1BC /* CartModel.xcdatamodeld */; };
+		39A225ED1EBEE00C00EAB1BC /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A225EC1EBEE00C00EAB1BC /* Product.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		392D25D31EBB01B900D0BB46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		392D25E31EBB416D00D0BB46 /* ItemsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsVC.swift; sourceTree = "<group>"; };
 		39A225A91EBC83B600EAB1BC /* CartModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CartModel.xcdatamodel; sourceTree = "<group>"; };
+		39A225EC1EBEE00C00EAB1BC /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		392D25B01EBB01B900D0BB46 /* CodeReader */ = {
 			isa = PBXGroup;
 			children = (
+				39A225EB1EBEDFFC00EAB1BC /* New Group */,
 				392D25B11EBB01B900D0BB46 /* AppDelegate.swift */,
 				392D25B31EBB01B900D0BB46 /* BarCodeScanner.swift */,
 				392D25B51EBB01B900D0BB46 /* Main.storyboard */,
@@ -129,6 +132,14 @@
 				392D25D31EBB01B900D0BB46 /* Info.plist */,
 			);
 			path = CodeReaderUITests;
+			sourceTree = "<group>";
+		};
+		39A225EB1EBEDFFC00EAB1BC /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				39A225EC1EBEE00C00EAB1BC /* Product.swift */,
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +281,7 @@
 			files = (
 				392D25B41EBB01B900D0BB46 /* BarCodeScanner.swift in Sources */,
 				39A225AA1EBC83B600EAB1BC /* CartModel.xcdatamodeld in Sources */,
+				39A225ED1EBEE00C00EAB1BC /* Product.swift in Sources */,
 				392D25E41EBB416D00D0BB46 /* ItemsVC.swift in Sources */,
 				392D25B21EBB01B900D0BB46 /* AppDelegate.swift in Sources */,
 			);

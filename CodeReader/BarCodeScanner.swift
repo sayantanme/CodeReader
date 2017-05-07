@@ -15,6 +15,7 @@ class BarCodeScanner: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession?
     var previewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    var isActionAdd:Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,10 +93,17 @@ class BarCodeScanner: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
     }
     func found(code:String){
         print(code)
-        save(code: code)
+        
+        
+        if isActionAdd! {
+            getProductData(code: code)
+        }else{
+            remove(code: code)
+        }
+        
     }
     
-    func save(code: String){
+    func save(prod: Product){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
             return
         }
@@ -104,7 +112,10 @@ class BarCodeScanner: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
         
         let entity = NSEntityDescription.entity(forEntityName: "Products", in: managedContext)!
         let product = NSManagedObject(entity: entity, insertInto: managedContext)
-        product.setValue(code, forKeyPath: "code")
+        product.setValue(prod.code, forKeyPath: "code")
+        product.setValue(prod.price, forKeyPath: "price")
+        product.setValue(prod.productDescription, forKeyPath: "productDescription")
+        product.setValue(prod.quantity, forKeyPath: "quantity")
         
         do {
             try managedContext.save()
@@ -114,6 +125,30 @@ class BarCodeScanner: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func remove(code: String){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
+            return
+        }
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Products> = Products.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "code == %@", code)
+        let result = try? managedContext.fetch(fetchRequest)
+        let resultData = result!
+        for object in resultData {
+            managedContext.delete(object)
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
     func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -121,7 +156,37 @@ class BarCodeScanner: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
         captureSession = nil
     }
 
-
+    // MARK: - Bluemix Calls
+    
+    func getProductData(code: String){
+        let url = URL(string: "https://autobillingsystem.mybluemix.net/getproductbycode/\(code)")
+        
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            guard error == nil else{
+                print(error?.localizedDescription ?? "Error")
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+                print(json)
+                if json.count > 0 {
+                    let prod = Product()
+                    prod.code = code
+                    prod.productDescription = json["productname"] as? String
+                    prod.price = json["price"] as? Double
+                    prod.quantity = 1
+                    
+                    self.save(prod: prod)
+                }
+                //save(code: code)
+                
+            }catch let error as NSError{
+                print(error)
+            }
+        }
+        
+        task.resume()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

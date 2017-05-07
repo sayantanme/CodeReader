@@ -22,8 +22,12 @@ class ItemsVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         refreshControl.attributedTitle = NSAttributedString(string: title)
         refreshControl.addTarget(self, action: #selector(ItemsVC.fetchData), for: .valueChanged)
         itemtbl.refreshControl = refreshControl
+        
+        getProductsData()
     }
-
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,19 +74,49 @@ class ItemsVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemsCell", for: indexPath)
         let product = items[indexPath.row]
-        cell.textLabel?.text = product.value(forKeyPath: "code") as? String
+        cell.textLabel?.text = product.value(forKeyPath: "productDescription") as? String
         return cell
     }
+    
+    // MARK: - Button Actions
+    
     @IBAction func addItems(_ sender: UIButton) {
         let scanVc = BarCodeScanner()
+        scanVc.isActionAdd = true
         scanVc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         scanVc.modalTransitionStyle = .coverVertical
         present(scanVc, animated: true, completion: nil)
     }
     
     @IBAction func removeItems(_ sender: UIButton) {
+        let scanVc = BarCodeScanner()
+        scanVc.isActionAdd = false
+        scanVc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        scanVc.modalTransitionStyle = .coverVertical
+        present(scanVc, animated: true, completion: nil)
     }
     
+    // MARK: - Bluemix Calls
+    
+    func getProductsData(){
+        let url = URL(string: "https://autobillingsystem.mybluemix.net/listproduct")
+        
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            guard error == nil else{
+                print(error?.localizedDescription ?? "Error")
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+                print(json)
+                
+            }catch let error as NSError{
+                print(error)
+            }
+        }
+        
+        task.resume()
+    }
     /*
     // MARK: - Navigation
 
